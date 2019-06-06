@@ -1,0 +1,32 @@
+redshift -t 6500:2000 &
+feh --bg-scale ~/wallpaper.jpg # When you have the rest of your wallpapers, use a random if you want... otherwise use the nice flower
+# slstatus &
+
+# Alternate dwm status
+dte() {
+  dte="$(date +"%a, %b %d | %H:%M")"
+  echo "$dte"
+}
+
+mem() {
+  mem=`free | awk '/Mem/ {printf "%d MiB/%d MiB\n", $3 / 1024.0, $2 / 1024.0 }'`
+  echo "MEM: $mem"
+}
+
+cpu(){
+  read cpu a b c previdle rest < /proc/stat
+  prevtotal=$((a+b+c+previdle))
+  sleep 0.5
+  read cpu a b c idle rest < /proc/stat
+  total=$((a+b+c+idle))
+  cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
+  echo -e "CPU: $cpu%"
+}
+
+
+while true; do
+     xsetroot -name "$(cpu) | $(mem) | $(dte)"
+     sleep 1s    # Update time every one seconds
+done &
+
+exec dwm

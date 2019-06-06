@@ -1,0 +1,1 @@
+be sure to add tint2 & to .config/openbox/autostart and .xinitrc

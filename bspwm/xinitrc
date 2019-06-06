@@ -1,0 +1,5 @@
+# redshift -t 6000:2000
+feh --bg-scale ~/wallpaper.jpg 
+# When you have the rest of your wallpapers, use a random if you want... otherwise use the nice flower
+sxhkd &
+exec bspwm
