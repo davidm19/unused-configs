@@ -1,6 +1,5 @@
 # Unused-Configs
-
-## Configs that are unused
+Configs that are unused
 
 ### List of configs in this repository:
 * bspwm
