@@ -3,6 +3,8 @@ feh --bg-scale ~/wallpaper.jpg # When you have the rest of your wallpapers, use 
 # slstatus &
 
 # Alternate dwm status
+
+# NOTE: THIS REQUIRES THE xorg-xsetroot package!!!
 dte() {
   dte="$(date +"%a, %b %d | %H:%M")"
   echo "$dte"
