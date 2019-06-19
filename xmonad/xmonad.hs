@@ -29,7 +29,7 @@ import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
 
--- Section: Main Function and COnfiguration
+-- Section: Main Function and Configuration
 main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
 -- myTerminal = "xfce4-terminal --hide-menubar --hide-scrollbar --hide-borders" This is also a safe option if st is being too finicky
@@ -38,12 +38,13 @@ myTerminal = "st"
 myConfig = desktopConfig
      { layoutHook = myLayout
      , terminal   = myTerminal
-     } `additionalKeysP`         myKeys
+     } `removeKeys` [ (mod1Mask, xK_b) ]
+     `additionalKeysP`         myKeys
 
 -- Section: XMobar Configuration
 myBar = "xmobar"
 myPP  = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (mod4Mask .|. controlMask, xK_b)
 
 -- Section: Layouts
 myLayout = smartBorders
