@@ -32,6 +32,7 @@ import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(T
 -- Section: Main Function and COnfiguration
 main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
+-- myTerminal = "xfce4-terminal --hide-menubar --hide-scrollbar --hide-borders" This is also a safe option if st is being too finicky
 myTerminal = "st"
 
 myConfig = desktopConfig
