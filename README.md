@@ -6,6 +6,7 @@ Configs that are unused
 * dwm
 * i3wm
 * openbox
+* xmonad
 
 Feel free to take what you want from here *as long as you know exactly what
 you're doing*.
