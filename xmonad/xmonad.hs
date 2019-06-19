@@ -8,6 +8,7 @@
 -}
 
 -- Section: Imports
+
 -- Base Imports
 import XMonad
 import System.Exit (exitSuccess)
