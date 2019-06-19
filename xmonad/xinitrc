@@ -1,0 +1,4 @@
+redshift -t 6500:2000 &
+feh --randomize --bg-scale ~/photos/* # When you have the rest of your wallpapers, use a random if you want... otherwise use the nice flower
+
+exec xmonad
