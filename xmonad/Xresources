@@ -1,0 +1,9 @@
+! ROFI
+rofi.lines: 3
+rofi.font:curie 14
+rofi.padding: 100
+rofi.location: 0
+rofi.terminal: urxvt
+rofi.opacity: 70
+rofi.color-enabled: true
+rofi.theme: ~/.oxide.rasi

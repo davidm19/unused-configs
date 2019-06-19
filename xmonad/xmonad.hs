@@ -57,15 +57,16 @@ myLayout = smartBorders
 -- Section: Keybindings
 myKeys =
         -- Xmonad
-        [ ("M-C-r", spawn "xmonad --recompile")      -- Recompiles xmonad
-        , ("M-S-r", spawn "xmonad --restart")        -- Restarts xmonad
-        , ("M-S-q", io exitSuccess)                  -- Quits xmonad
+        [ ("M-C-r", spawn "xmonad --recompile")
+        , ("M-S-r", spawn "xmonad --restart")
+        , ("M-S-q", io exitSuccess)
+        , ("M-p",   spawn "rofi -show run")
 
         -- Scratchpads
         , ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal")
 
         -- Layouts
-        , ("M-<Space>", sendMessage NextLayout)      -- Switch to next layout
+        , ("M-<Space>", sendMessage NextLayout)
         , ("M-S-f", sendMessage (T.Toggle "simpleFloat"))
         , ("M-S-m", sendMessage $ Toggle FULL ) ]
 
