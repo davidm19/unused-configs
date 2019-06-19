@@ -1,21 +1,37 @@
+{-|
+
+   File: xmonad.hs
+   Description: Short and sweet xmonad configuration (which is still in its infancy)
+   Author: davidm19
+   Date: June 18th, 2019
+ 
+-}
+
+-- Section: Imports
+-- Base Imports
 import XMonad
 import System.Exit (exitSuccess)
 import XMonad.Config.Desktop
+import qualified XMonad.StackSet as W
+
+-- Utilities
+import XMonad.Util.EZConfig (additionalKeysP)
+import XMonad.Util.NamedScratchpad
+
+-- Hooks
+import XMonad.Hooks.DynamicLog
+
+-- Layouts
 import XMonad.Layout.Dwindle
 import XMonad.Layout.NoBorders (smartBorders)
-import XMonad.Hooks.DynamicLog
 import XMonad.Layout.SimplestFloat
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
-import XMonad.Util.EZConfig (additionalKeysP)
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
-import XMonad.Util.NamedScratchpad
-import qualified XMonad.StackSet as W
 
--- Main Function
+-- Section: Main Function and COnfiguration
 main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
--- Main Configuration
 myTerminal = "st"
 
 myConfig = desktopConfig
@@ -23,17 +39,17 @@ myConfig = desktopConfig
      , terminal   = myTerminal
      } `additionalKeysP`         myKeys
 
--- XMobar Configuration
+-- Section: XMobar Configuration
 myBar = "xmobar"
 myPP  = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
--- Layouts
+-- Section: Layouts
 myLayout = smartBorders
          $ mkToggle (NOBORDERS ?? FULL ?? EOT)
          $ Dwindle R CW (3/2) (11/10) ||| simplestFloat ||| Full
 
--- Keybindings
+-- Section: Keybindings
 myKeys =
         -- Xmonad
         [ ("M-C-r", spawn "xmonad --recompile")      -- Recompiles xmonad
@@ -48,7 +64,7 @@ myKeys =
         , ("M-S-f", sendMessage (T.Toggle "simpleFloat"))
         , ("M-S-m", sendMessage $ Toggle FULL ) ]
 
--- Scratchpads
+-- Section: Scratchpads
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 ]
     where
@@ -60,4 +76,3 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                  w = 0.9
                  t = 0.95 -h
                  l = 0.95 -w
-
