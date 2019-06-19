@@ -9,14 +9,18 @@ import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
 import XMonad.Util.EZConfig (additionalKeysP)
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
+import XMonad.Util.NamedScratchpad
+import qualified XMonad.StackSet as W
 
 -- Main Function
 main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
 -- Main Configuration
+myTerminal = "st"
+
 myConfig = desktopConfig
      { layoutHook = myLayout
-     , terminal   = "st"
+     , terminal   = myTerminal
      } `additionalKeysP`         myKeys
 
 -- XMobar Configuration
@@ -36,13 +40,24 @@ myKeys =
         , ("M-S-r", spawn "xmonad --restart")        -- Restarts xmonad
         , ("M-S-q", io exitSuccess)                  -- Quits xmonad
 
+        -- Scratchpads
+        , ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal")
+
         -- Layouts
         , ("M-<Space>", sendMessage NextLayout)      -- Switch to next layout
         , ("M-S-f", sendMessage (T.Toggle "simpleFloat"))
         , ("M-S-m", sendMessage $ Toggle FULL ) ]
 
+-- Scratchpads
+myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
+                ]
+    where
+    spawnTerm  = myTerminal ++  " -n scratchpad"
+    findTerm   = resource =? "scratchpad"
+    manageTerm = customFloating $ W.RationalRect l t w h
+                 where
+                 h = 0.9
+                 w = 0.9
+                 t = 0.95 -h
+                 l = 0.95 -w
 
--- namedScratchpads (dwt1)
-
--- simpleFloat
--- Monocle
