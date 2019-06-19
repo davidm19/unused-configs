@@ -32,7 +32,10 @@ import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(T
 -- Section: Main Function and Configuration
 main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
--- myTerminal = "xfce4-terminal --hide-menubar --hide-scrollbar --hide-borders" This is also a safe option if st is being too finicky
+-- myTerminal = "xfce4-terminal --hide-menubar --hide-scrollbar --hide-borders"
+-- This is also a safe option if st is being too finicky. Keep in mind, however, only st
+-- is able to be used as a scratchpad, so you'll have to change this in the scratchpad
+-- section.
 myTerminal = "st"
 
 myConfig = desktopConfig
