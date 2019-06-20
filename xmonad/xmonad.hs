@@ -76,6 +76,7 @@ myKeys =
         , ("M-S-r", spawn "xmonad --restart")
         , ("M-S-q", io exitSuccess)
         , ("M-p",   spawn "rofi -show run")
+        , ("M-S-p",   spawn "bash $HOME/.power.sh")
 
         -- Scratchpads
         , ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal")
