@@ -11,9 +11,9 @@
 
 -- Base Imports
 import XMonad
-import System.Exit (exitSuccess)
 import XMonad.Config.Desktop
 import qualified XMonad.StackSet as W
+import System.Exit (exitSuccess)
 
 -- Utilities
 import XMonad.Util.EZConfig (additionalKeysP)
@@ -24,10 +24,12 @@ import XMonad.Hooks.DynamicLog
 
 -- Layouts
 import XMonad.Layout.Dwindle
-import XMonad.Layout.NoBorders (smartBorders)
-import XMonad.Layout.SimplestFloat
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
+import XMonad.Layout.NoBorders
+import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.SimplestFloat
+import XMonad.Layout.Tabbed
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
 
 -- Section: Main Function and Configuration
@@ -51,9 +53,21 @@ myPP  = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (mod4Mask .|. controlMask, xK_b)
 
 -- Section: Layouts
+myTabConfig = def { activeColor = "#646464"
+                  , inactiveColor = "#000000"
+                  , urgentColor = "#FF0000"
+                  , activeBorderColor = "#646464"
+                  , inactiveBorderColor = "#646464"
+                  , urgentBorderColor = "#0087FF"
+                  , activeTextColor = "#00ff11"
+                  , inactiveTextColor = "#646464"
+                  , urgentTextColor = "#FFF200"
+                  , fontName = "xft:curie:size=11:antialias=true"
+                  }
+
 myLayout = smartBorders
          $ mkToggle (NOBORDERS ?? FULL ?? EOT)
-         $ Dwindle R CW (3/2) (11/10) ||| simplestFloat ||| Full
+         $ Dwindle R CW (3/2) (11/10) ||| simplestFloat ||| noBorders (tabbed shrinkText myTabConfig)
 
 -- Section: Keybindings
 myKeys =
