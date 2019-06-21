@@ -49,18 +49,18 @@ myConfig = desktopConfig
 
 -- Section: XMobar Configuration
 myBar = "xmobar"
-myPP  = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
+myPP  = xmobarPP { ppCurrent = xmobarColor "#6bf7ff" "" . wrap "<" ">" }
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (mod4Mask .|. controlMask, xK_b)
 
 -- Section: Layouts
-myTabConfig = def { activeColor = "#646464"
+myTabConfig = def { activeColor = "#353535"
                   , inactiveColor = "#000000"
                   , urgentColor = "#FF0000"
-                  , activeBorderColor = "#646464"
-                  , inactiveBorderColor = "#646464"
+                  , activeBorderColor = "#FF0000"
+                  , inactiveBorderColor = "#000000"
                   , urgentBorderColor = "#0087FF"
-                  , activeTextColor = "#00ff11"
-                  , inactiveTextColor = "#646464"
+                  , activeTextColor = "#FFFFFF"
+                  , inactiveTextColor = "#FFFFFF"
                   , urgentTextColor = "#FFF200"
                   , fontName = "xft:curie:size=11:antialias=true"
                   }
