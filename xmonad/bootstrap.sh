@@ -1,6 +1,6 @@
 # steps:
 # 1. determine OS
-# 2. install rofi, feh, st, + other dependencies
+# 2. install rofi, feh, sflock, st, + other dependencies
 # 3. install cabal
 # 4. install xmonad, contrib, and xmobar
 # 5. install fonts (curie, iosevka, terminus)
