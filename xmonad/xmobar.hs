@@ -10,7 +10,7 @@
 Config { 
 
    -- Section: Appearance
-     font =         "curie:size=11:bold:antialias=false"
+     font =         "xft:curie:size=11:antialias=false"
    , bgColor =      "black"
    , fgColor =      "#646464"
    , position =     Top
