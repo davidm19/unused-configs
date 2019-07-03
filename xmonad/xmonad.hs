@@ -18,9 +18,11 @@ import System.Exit (exitSuccess)
 -- Utilities
 import XMonad.Util.EZConfig (additionalKeysP, removeKeys)
 import XMonad.Util.NamedScratchpad
+import XMonad.Util.Run
 
 -- Hooks
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
 
 -- Layouts
 import XMonad.Layout.Dwindle
@@ -33,7 +35,21 @@ import XMonad.Layout.Tabbed
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
 
 -- Section: Main Function and Configuration
-main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
+-- main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
+main = do
+    xmproc <- spawnPipe "xmobar ~/.xmobar/xmobar.hs"
+    xmonad $ desktopConfig
+         { layoutHook = avoidStruts $ layoutHook desktopConfig
+         , manageHook = manageDocks <+> manageHook desktopConfig
+         , terminal   = myTerminal
+         , logHook = dynamicLogWithPP $ defaultPP
+             { ppOutput = hPutStrLn xmproc
+	     , ppTitle = xmobarColor "green" "" . shorten 50
+	     , ppCurrent = xmobarColor "#6bf7ff" "" . wrap "<" ">"
+             , ppOrder = \(ws:_:t:_) -> [ws,t]
+	     }
+         } `removeKeys` [ (mod1Mask, xK_b) ]
+         `additionalKeysP`         myKeys
 
 -- myTerminal = "xfce4-terminal --hide-menubar --hide-scrollbar --hide-borders"
 -- This is also a safe option if st is being too finicky. Keep in mind, however, only st
@@ -41,30 +57,7 @@ main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 -- section.
 myTerminal = "st"
 
-myConfig = desktopConfig
-     { layoutHook = myLayout
-     , terminal   = myTerminal
-     } `removeKeys` [ (mod1Mask, xK_b) ]
-     `additionalKeysP`         myKeys
-
--- Section: XMobar Configuration
-myBar = "xmobar"
-myPP  = xmobarPP { ppCurrent = xmobarColor "#6bf7ff" "" . wrap "<" ">" }
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (mod4Mask .|. controlMask, xK_b)
-
 -- Section: Layouts
-myTabConfig = def { activeColor = "#282828"
-                  , inactiveColor = "#000000"
-                  , urgentColor = "#FF0000"
-                  , activeBorderColor = "#ff0000"
-                  , inactiveBorderColor = "#000000"
-                  , urgentBorderColor = "#0087FF"
-                  , activeTextColor = "#ffffff"
-                  , inactiveTextColor = "#ffffff"
-                  , urgentTextColor = "#FFF200"
-                  , fontName = "xft:curie:size=11:antialias=true"
-                  }
-
 myLayout = smartBorders
          $ mkToggle (NOBORDERS ?? FULL ?? EOT)
          $ Dwindle R CW (3/2) (11/10) ||| simplestFloat ||| noBorders (tabbed shrinkText myTabConfig)
@@ -76,7 +69,7 @@ myKeys =
         , ("M-S-r", spawn "xmonad --restart")
         , ("M-S-q", io exitSuccess)
         , ("M-p",   spawn "rofi -show run")
-        , ("M-S-p",   spawn "bash $HOME/.power.sh")
+        , ("M-S-p",   spawn "bash $HOME/power.sh")
 
         -- Scratchpads
         , ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal")
@@ -90,7 +83,7 @@ myKeys =
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 ]
     where
-    spawnTerm  = myTerminal ++  " -n scratchpad"
+    spawnTerm  = myTerminal ++ " -n scratchpad"
     findTerm   = resource =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
                  where
