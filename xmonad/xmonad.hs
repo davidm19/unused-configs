@@ -25,13 +25,14 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 
 -- Layouts
-import XMonad.Layout.Dwindle
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
 import XMonad.Layout.NoBorders
 import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.SimplestFloat
 import XMonad.Layout.Tabbed
+import XMonad.Layout.TwoPane
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
 
 -- Section: Main Function and Configuration
@@ -39,14 +40,13 @@ import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(T
 main = do
     xmproc <- spawnPipe "xmobar ~/.xmobar/xmobar.hs"
     xmonad $ desktopConfig
-         { layoutHook = avoidStruts $ layoutHook desktopConfig
+         { layoutHook = myLayout
          , manageHook = manageDocks <+> manageHook desktopConfig
          , terminal   = myTerminal
-         , logHook = dynamicLogWithPP $ defaultPP
-             { ppOutput = hPutStrLn xmproc
-	     , ppTitle = xmobarColor "green" "" . shorten 50
+         , logHook    = dynamicLogWithPP $ defaultPP
+             { ppOutput  = hPutStrLn xmproc
+	     , ppTitle   = xmobarColor "green" "" . shorten 50
 	     , ppCurrent = xmobarColor "#6bf7ff" "" . wrap "<" ">"
-             , ppOrder = \(ws:_:t:_) -> [ws,t]
 	     }
          } `removeKeys` [ (mod1Mask, xK_b) ]
          `additionalKeysP`         myKeys
@@ -58,9 +58,20 @@ main = do
 myTerminal = "st"
 
 -- Section: Layouts
-myLayout = smartBorders
-         $ mkToggle (NOBORDERS ?? FULL ?? EOT)
-         $ Dwindle R CW (3/2) (11/10) ||| simplestFloat ||| noBorders (tabbed shrinkText myTabConfig)
+myLayout = smartBorders $ avoidStruts $ mkToggle (NOBORDERS ?? FULL ?? EOT)
+         $ ResizableTall 1 (3/100) (1/2) [] ||| TwoPane (3/100) (1/2) ||| simplestFloat ||| noBorders (tabbed shrinkText myTabConfig)
+
+myTabConfig = def { activeColor         = "#353535"
+                  , inactiveColor       = "#000000"
+                  , urgentColor         = "#FF0000"
+                  , activeBorderColor   = "#FF0000"
+                  , inactiveBorderColor = "#000000"
+                  , urgentBorderColor   = "#0087FF"
+                  , activeTextColor     = "#FFFFFF"
+                  , inactiveTextColor   = "#FFFFFF"
+                  , urgentTextColor     = "#FFF200"
+                  , fontName            = "xft:curie:size = 11:antialias = true"
+                  }
 
 -- Section: Keybindings
 myKeys =
