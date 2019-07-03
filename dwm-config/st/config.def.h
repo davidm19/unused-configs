@@ -6,6 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "curie:size=12:antialias=true:autohint=true";
+/* static char *font = "xos4 Terminus:size=12:antialias=false:autohint=true"; */
 static int borderpx = 2;
 
 /*
