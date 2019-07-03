@@ -16,7 +16,7 @@ import qualified XMonad.StackSet as W
 import System.Exit (exitSuccess)
 
 -- Utilities
-import XMonad.Util.EZConfig (additionalKeysP)
+import XMonad.Util.EZConfig (additionalKeysP, removeKeys)
 import XMonad.Util.NamedScratchpad
 
 -- Hooks
@@ -53,14 +53,14 @@ myPP  = xmobarPP { ppCurrent = xmobarColor "#6bf7ff" "" . wrap "<" ">" }
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (mod4Mask .|. controlMask, xK_b)
 
 -- Section: Layouts
-myTabConfig = def { activeColor = "#353535"
+myTabConfig = def { activeColor = "#282828"
                   , inactiveColor = "#000000"
                   , urgentColor = "#FF0000"
-                  , activeBorderColor = "#FF0000"
+                  , activeBorderColor = "#ff0000"
                   , inactiveBorderColor = "#000000"
                   , urgentBorderColor = "#0087FF"
-                  , activeTextColor = "#FFFFFF"
-                  , inactiveTextColor = "#FFFFFF"
+                  , activeTextColor = "#ffffff"
+                  , inactiveTextColor = "#ffffff"
                   , urgentTextColor = "#FFF200"
                   , fontName = "xft:curie:size=11:antialias=true"
                   }
