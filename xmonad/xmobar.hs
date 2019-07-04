@@ -34,7 +34,7 @@ Config {
    -- Scetion: Plugins
    , commands = 
         -- network activity monitor (dynamic interface resolution)
-        [ Run DynNetwork     [ "--template" , "<fc=#949494><dev>:</fc> <tx>kB/s|<rx>kB/s <fc=#949494>::</fc>"
+        [ Run DynNetwork     [ "--template" , "<fc=#949494><dev>:</fc> <tx><fc=#949494>kB/s|</fc><rx><fc=#949494>kB/s ::</fc>"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "5000"       -- units: B/s
                              , "--low"      , "green"
@@ -87,8 +87,7 @@ Config {
                              ] 50
 
         -- time and date indicator 
-        --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#00ffff>%F</fc> <fc=#ffff00>(%a)</fc> <fc=#ff0000>%T</fc>" "date" 10
+        , Run Date           "<fc=#00ffff>%Y-%h-%d</fc> <fc=#ffff00>(%a)</fc> <fc=#ff0000>%T</fc>" "date" 10
 
         -- keyboard layout indicator
         , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
