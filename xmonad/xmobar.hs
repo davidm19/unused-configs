@@ -11,16 +11,17 @@ Config {
 
    -- Section: Appearance
      font =         "xft:curie:size=11:antialias=false"
+   -- font =         "xft:xos4 Terminus:size=11:antialias=True"
    , bgColor =      "black"
    , fgColor =      "#646464"
    , position =     Top
    , border =       BottomB
    , borderColor =  "#646464"
 
-   -- Section: Layout
-   , sepChar =  "%"
-   , alignSep = "}{"
-   , template = "%StdinReader% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %date% || %kbd% "
+   -- layout
+   , sepChar =  "%"   -- delineator between plugin names and straight text
+   , alignSep = "}{"  -- separator between left-right alignment
+   , template = "%StdinReader% }{ %dynnetwork% %multicpu% <fc=#b2b2b2>::</fc> %memory% <fc=#b2b2b2>::</fc> %date% "
 
    -- Section: general behavior
    , lowerOnStart =     True
@@ -33,19 +34,19 @@ Config {
    -- Scetion: Plugins
    , commands = 
         -- network activity monitor (dynamic interface resolution)
-        [ Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
+        [ Run DynNetwork     [ "--template" , "<fc=#949494><dev>:</fc> <tx>kB/s|<rx>kB/s <fc=#949494>::</fc>"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "5000"       -- units: B/s
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "green"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "Cpu: <total0>%|<total1>%"
+        , Run MultiCpu       [ "--template" , "<fc=#949494>CPU:</fc> <total0>%|<total1><fc=#949494>%</fc>"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "green"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
@@ -60,10 +61,10 @@ Config {
                              ] 50
                           
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"Mem: <usedratio>%"
+        , Run Memory         [ "--template" ,"<fc=#949494>Mem:</fc> <usedratio><fc=#949494>%</fc>"
                              , "--Low"      , "20"        -- units: %
                              , "--High"     , "90"        -- units: %
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "green"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
@@ -87,7 +88,7 @@ Config {
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
+        , Run Date           "<fc=#00ffff>%F</fc> <fc=#ffff00>(%a)</fc> <fc=#ff0000>%T</fc>" "date" 10
 
         -- keyboard layout indicator
         , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")

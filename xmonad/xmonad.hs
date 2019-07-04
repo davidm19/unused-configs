@@ -36,7 +36,6 @@ import XMonad.Layout.TwoPane
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
 
 -- Section: Main Function and Configuration
--- main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 main = do
     xmproc <- spawnPipe "xmobar ~/.xmobar/xmobar.hs"
     xmonad $ desktopConfig
@@ -45,8 +44,11 @@ main = do
          , terminal   = myTerminal
          , logHook    = dynamicLogWithPP $ defaultPP
              { ppOutput  = hPutStrLn xmproc
-	     , ppTitle   = xmobarColor "green" "" . shorten 50
-	     , ppCurrent = xmobarColor "#6bf7ff" "" . wrap "<" ">"
+	     , ppTitle   = xmobarColor "#ff0000" "" . shorten 50
+	     , ppLayout  = xmobarColor "#ffff00" ""
+	     , ppSep     = "<fc=#b2b2b2> :: </fc>"
+	     , ppCurrent = xmobarColor "#00ffff" "" . wrap "[" "]"
+	     -- , ppOrder 	 = \(ws:l:t:_) -> [ws,l]
 	     }
          } `removeKeys` [ (mod1Mask, xK_b) ]
          `additionalKeysP`         myKeys
@@ -61,10 +63,10 @@ myTerminal = "st"
 myLayout = smartBorders $ avoidStruts $ mkToggle (NOBORDERS ?? FULL ?? EOT)
          $ ResizableTall 1 (3/100) (1/2) [] ||| TwoPane (3/100) (1/2) ||| simplestFloat ||| noBorders (tabbed shrinkText myTabConfig)
 
-myTabConfig = def { activeColor         = "#353535"
-                  , inactiveColor       = "#000000"
+myTabConfig = def { activeColor         = "#000000"
+                  , inactiveColor       = "#121212"
                   , urgentColor         = "#FF0000"
-                  , activeBorderColor   = "#FF0000"
+                  , activeBorderColor   = "#000000"
                   , inactiveBorderColor = "#000000"
                   , urgentBorderColor   = "#0087FF"
                   , activeTextColor     = "#FFFFFF"
