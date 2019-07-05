@@ -60,8 +60,17 @@ main = do
 myTerminal = "st"
 
 -- Section: Layouts
-myLayout = smartBorders $ avoidStruts $ mkToggle (NOBORDERS ?? FULL ?? EOT)
-         $ ResizableTall 1 (3/100) (1/2) [] ||| TwoPane (3/100) (1/2) ||| simplestFloat ||| noBorders (tabbed shrinkText myTabConfig)
+-- myLayout = smartBorders $ avoidStruts $ mkToggle (NOBORDERS ?? FULL ?? EOT)
+--          $ ResizableTall 1 (3/100) (1/2) [] ||| TwoPane (3/100) (1/2) ||| simplestFloat ||| noBorders (tabbed shrinkText myTabConfig)
+
+myLayout = smartBorders $ avoidStruts $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ myDefaultLayout
+         where
+	     myDefaultLayout = tall ||| twoPane ||| floater ||| tab
+
+tall    = renamed [Replace "Tall"] $ ResizableTall 1 (3/100) (1/2) []
+twoPane = renamed [Replace "Two Pane"] $ TwoPane (3/100) (1/2)
+floater = renamed [Replace "Floating"] $ simplestFloat
+tab     = renamed [Replace "Tabbed"] $ noBorders (tabbed shrinkText myTabConfig)
 
 myTabConfig = def { activeColor         = "#000000"
                   , inactiveColor       = "#121212"
@@ -73,6 +82,7 @@ myTabConfig = def { activeColor         = "#000000"
                   , inactiveTextColor   = "#FFFFFF"
                   , urgentTextColor     = "#FFF200"
                   , fontName            = "xft:curie:size = 11:antialias = true"
+                  -- , fontName            = "xft:Inconsolata:size = 9:antialias = true"
                   }
 
 -- Section: Keybindings
