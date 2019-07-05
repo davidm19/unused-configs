@@ -1,6 +1,7 @@
 ! ROFI
 rofi.lines: 3
 rofi.font:xos4 Terminus 14
+!rofi.font:Inconsolata 14
 rofi.padding: 100
 rofi.location: 0
 rofi.terminal: st
