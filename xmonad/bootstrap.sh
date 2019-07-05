@@ -3,7 +3,7 @@
 # 2. install rofi, feh, sflock, st, + other dependencies
 # 3. install cabal
 # 4. install xmonad, contrib, and xmobar
-# 5. install fonts (curie, iosevka, terminus)
+# 5. install fonts (curie, Inconsolata, terminus)
 # 6. move and load Xresources + oxide theme
 # 7. move and load xmonad, xmobar configs
 # 8. move and rename power script
