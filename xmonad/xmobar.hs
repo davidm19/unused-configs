@@ -19,9 +19,9 @@ Config {
    , border =       BottomB
    , borderColor =  "#646464"
 
-   -- layout
-   , sepChar =  "%"   -- delineator between plugin names and straight text
-   , alignSep = "}{"  -- separator between left-right alignment
+   -- Section: Layout
+   , sepChar =  "%"
+   , alignSep = "}{"
    , template = "%StdinReader% }{ %dynnetwork% %multicpu% <fc=#b2b2b2>::</fc> %memory% <fc=#b2b2b2>::</fc> %date% "
 
    -- Section: general behavior
