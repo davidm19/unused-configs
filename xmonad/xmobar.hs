@@ -12,6 +12,7 @@ Config {
    -- Section: Appearance
      font =         "xft:curie:size=11:antialias=false"
    -- font =         "xft:xos4 Terminus:size=11:antialias=True"
+   -- font =         "xft:Inconsolata:size=11:antialias=True"
    , bgColor =      "black"
    , fgColor =      "#646464"
    , position =     Top
