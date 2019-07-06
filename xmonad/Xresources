@@ -1,10 +1,20 @@
-! ROFI
+! File:         Xresources
+! Description:  Xresources file for rofi use
+! Author:       davidm19
+! Date:         July 5th, 2019
+
 rofi.lines: 3
-rofi.font:xos4 Terminus 14
-!rofi.font:Inconsolata 14
-rofi.padding: 100
+rofi.font:Inconsolata 14
 rofi.location: 0
-rofi.terminal: st
+rofi.terminal: st 
 rofi.opacity: 70
 rofi.color-enabled: true
-rofi.theme: ~/.oxide.rasi
+rofi.hide-scrollbar: true
+rofi.fg: #bcbcbc
+rofi.bc: #bcbcbc
+
+! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
+rofi.color-normal: #121212,  #bcbcbc,  #121212,  #5294E2,  #FFFFFF
+
+!                  'background', 'border'
+rofi.color-window: #121212,      #000000
