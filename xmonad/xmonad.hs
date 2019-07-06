@@ -1,9 +1,9 @@
 {-|
 
-   File: xmonad.hs
-   Description: Short and sweet xmonad configuration (which is still in its infancy)
-   Author: davidm19
-   Date: June 18th, 2019
+   File:         xmonad.hs
+   Description:  Short and sweet xmonad configuration (which is still in its infancy)
+   Author:       davidm19
+   Date:         June 18th, 2019
  
 -}
 

@@ -1,9 +1,9 @@
 {-|
 
-   File: xmobar.hs
-   Description: Short and sweet xmobar configuration (which is still in its infancy)
-   Author: davidm19
-   Date: June 18th, 2019
+   File:         xmobar.hs
+   Description:  Short and sweet xmobar configuration (which is still in its infancy)
+   Author:       davidm19
+   Date:         June 18th, 2019
 
 -}
 
