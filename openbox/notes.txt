@@ -1,1 +1,2 @@
-be sure to add tint2 & to .config/openbox/autostart and .xinitrc
+be sure to add tint2 & and feh --bg-scale #808080 to .config/openbox/autostart and .xinitrc
+and try out dunst!
