@@ -1,7 +1,7 @@
 # steps:
 # 1. determine OS
 # 2. install rofi, feh, sflock, st, + other dependencies
-# 3. install cabal
+# 3. install cabal and cabal update
 # 4. install xmonad, contrib, and xmobar
 # 5. install fonts (curie, Inconsolata, terminus)
 # 6. move and load Xresources + oxide theme
