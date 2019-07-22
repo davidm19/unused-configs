@@ -4,7 +4,7 @@
    Description:  Short and sweet xmonad configuration (which is still in its infancy)
    Author:       davidm19
    Date:         June 18th, 2019
- 
+
 -}
 
 -- Section: Imports
@@ -46,13 +46,13 @@ main = do
          , manageHook = manageDocks <+> manageHook desktopConfig
          , terminal   = myTerminal
          , logHook    = dynamicLogWithPP $ def
-             { ppOutput  = hPutStrLn xmproc
-             , ppTitle   = xmobarColor "#ff0000" "" . shorten 50
-             , ppLayout  = xmobarColor "#ffff00" ""
-             , ppSep     = "<fc=#b2b2b2> :: </fc>"
-             , ppCurrent = xmobarColor "#eeeeee" "" . wrap "" ""
+             { ppoutput          = hputstrln xmproc
+             , ppTitle           = xmobarColor "#ff0000" "" . shorten 50
+             , ppLayout          = xmobarColor "#ffff00" ""
+             , ppSep             = "<fc                                  = #b2b2b2> :: </fc>"
+             , ppCurrent         = xmobarColor "#eeeeee" "" . wrap "" ""
              , ppHiddenNoWindows = xmobarColor "#585858" "#000000"
-             , ppOrder = \(ws:l:t:_) -> [ws,l]
+             , ppOrder           = \(ws:l:t:_) -> [ws,l]
              }
          } `removeKeys` [ (mod1Mask, xK_b) ]
          `additionalKeysP`         myKeys
