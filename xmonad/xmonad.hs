@@ -46,7 +46,7 @@ main = do
          , manageHook = manageDocks <+> manageHook desktopConfig
          , terminal   = myTerminal
          , logHook    = dynamicLogWithPP $ def
-             { ppOutput          = hputstrln xmproc
+             { ppOutput          = hPutStrLn xmproc
              , ppTitle           = xmobarColor "#ff0000" "" . shorten 50
              , ppLayout          = xmobarColor "#ffff00" ""
              , ppSep             = "<fc=#b2b2b2> :: </fc>"
