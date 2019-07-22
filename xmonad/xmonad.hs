@@ -64,13 +64,12 @@ main = do
 myTerminal = "st"
 
 -- Section: Layouts
--- myLayout = smartBorders $ avoidStruts $ mkToggle (NOBORDERS ?? FULL ?? EOT)
---          $ ResizableTall 1 (3/100) (1/2) [] ||| TwoPane (3/100) (1/2) ||| simplestFloat ||| noBorders (tabbed shrinkText myTabConfig)
-
--- myLayout = smartBorders $ avoidStruts $ gaps [(U,5), (D,5), (L,12), (R,12)] $ spacingRaw True (Border 0 2 2 2) True (Border 0 2 2 2) True $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ myDefaultLayout
 myLayout = smartBorders $ avoidStruts $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ myDefaultLayout
          where
             myDefaultLayout = tall ||| twoPane ||| floater ||| tab
+
+-- GAPS!
+-- myLayout = smartBorders $ avoidStruts $ gaps [(U,5), (D,5), (L,12), (R,12)] $ spacingRaw True (Border 0 2 2 2) True (Border 0 2 2 2) True $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ myDefaultLayout
 
 tall    = renamed [Replace "Tall"] $ ResizableTall 1 (3/100) (1/2) []
 twoPane = renamed [Replace "Two Pane"] $ TwoPane (3/100) (1/2)
