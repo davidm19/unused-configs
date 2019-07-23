@@ -9,15 +9,14 @@
 
 Config { 
 
-   -- Section: Appearance
-   -- font =         "xft:curie:size=11:antialias=false"
-   -- font =         "xft:xos4 Terminus:size=11:antialias=True"
-   font =         "xft:Inconsolata:size=11:antialias=True"
-   , bgColor =      "black"
+   -- appearance
+     -- font =         "xft:xos4 Terminus:size=11:antialias=True"
+     font =         "xft:Inconsolata:size=11:antialias=True"
+   , bgColor =      "#050505"
    , fgColor =      "#646464"
    , position =     Top
    , border =       BottomB
-   , borderColor =  "#646464"
+   , borderColor =  "#121212"
 
    -- Section: Layout
    , sepChar =  "%"
@@ -96,4 +95,4 @@ Config {
                              ]
 	, Run StdinReader
         ]
-}
+   }
