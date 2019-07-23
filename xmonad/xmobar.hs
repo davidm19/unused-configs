@@ -1,35 +1,26 @@
-{-|
-
-   File:         xmobar.hs
-   Description:  Short and sweet xmobar configuration (which is still in its infancy)
-   Author:       davidm19
-   Date:         June 18th, 2019
-
--}
-
 Config { 
 
    -- appearance
      -- font =         "xft:xos4 Terminus:size=11:antialias=True"
-     font =         "xft:Inconsolata:size=11:antialias=True"
-   , bgColor =      "#050505"
-   , fgColor =      "#646464"
-   , position =     Top
-   , border =       BottomB
-   , borderColor =  "#121212"
+     font        = "xft:Inconsolata:size=11:antialias=True"
+   , bgColor     = "#050505"
+   , fgColor     = "#646464"
+   , position    = Top
+   , border      = BottomB
+   , borderColor = "#121212"
 
    -- Section: Layout
-   , sepChar =  "%"
+   , sepChar  =  "%"
    , alignSep = "}{"
    , template = "%StdinReader% }{ %dynnetwork% %multicpu% <fc=#b2b2b2>::</fc> %memory% <fc=#b2b2b2>::</fc> %date% "
 
    -- Section: general behavior
-   , lowerOnStart =     True
-   , hideOnStart =      False
-   , allDesktops =      True
+   , lowerOnStart     = True
+   , hideOnStart      = False
+   , allDesktops      = True
    , overrideRedirect = True
-   , pickBroadest =     False
-   , persistent =       True
+   , pickBroadest     = False
+   , persistent       = True
 
    -- Scetion: Plugins
    , commands = 
@@ -59,7 +50,7 @@ Config {
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 50
-                          
+
         -- memory usage monitor
         , Run Memory         [ "--template" ,"<fc=#949494>Mem:</fc> <usedratio><fc=#949494>%</fc>"
                              , "--Low"      , "20"        -- units: %
@@ -96,3 +87,12 @@ Config {
 	, Run StdinReader
         ]
    }
+
+{-|
+
+   File:         xmobar.hs
+   Description:  Short and sweet xmobar configuration (which is still in its infancy)
+   Author:       davidm19
+   Date:         June 18th, 2019
+
+-}
