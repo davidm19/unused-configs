@@ -46,13 +46,13 @@ main = do
          , manageHook = manageDocks <+> manageHook desktopConfig
          , terminal   = myTerminal
          , logHook    = dynamicLogWithPP $ def
-             { ppoutput          = hputstrln xmproc
+             { ppOutput          = hPutStrLn xmproc
              , ppTitle           = xmobarColor "#ff0000" "" . shorten 50
              , ppLayout          = xmobarColor "#ffff00" ""
              , ppSep             = "<fc=#b2b2b2> :: </fc>"
              , ppCurrent         = xmobarColor "#eeeeee" "" . wrap "°" ""
-             , ppHidden          = xmobarColor "#eeeeee" "" . wrap "" ""
-             , ppHiddenNoWindows = xmobarColor "#585858" "#000000"
+             , ppHidden          = xmobarColor "#707070" "" . wrap "°" ""
+             , ppHiddenNoWindows = xmobarColor "#707070" "#000000"
              , ppOrder           = \(ws:l:t:_) -> [ws,l]
              }
          } `removeKeys` [ (mod1Mask, xK_b) ]
@@ -70,7 +70,7 @@ myLayout = smartBorders $ avoidStruts $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ my
             myDefaultLayout = tall ||| twoPane ||| floater ||| tab
 
 -- GAPS!
--- myLayout = smartBorders $ avoidStruts $ gaps [(U,5), (D,5), (L,12), (R,12)] $ spacingRaw True (Border 0 2 2 2) True (Border 0 2 2 2) True $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ myDefaultLayout
+-- myLayout = smartBorders $ avoidStruts $ gaps [(U,5), (D,5), (L,5), (R,5)] $ spacingRaw True (Border 0 2 2 2) True (Border 0 2 2 2) True $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ myDefaultLayout
 
 tall    = renamed [Replace "Tall"] $ ResizableTall 1 (3/100) (1/2) []
 twoPane = renamed [Replace "Two Pane"] $ TwoPane (3/100) (1/2)
