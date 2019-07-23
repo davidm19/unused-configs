@@ -50,8 +50,8 @@ main = do
              , ppTitle           = xmobarColor "#ff0000" "" . shorten 50
              , ppLayout          = xmobarColor "#ffff00" ""
              , ppSep             = "<fc=#b2b2b2> :: </fc>"
-             , ppCurrent         = xmobarColor "#eeeeee" "" . wrap "|" "|"
-             , ppHidden          = xmobarColor "#eeeeee" "" . wrap "°" ""
+             , ppCurrent         = xmobarColor "#eeeeee" "" . wrap "°" ""
+             , ppHidden          = xmobarColor "#707070" "" . wrap "°" ""
              , ppHiddenNoWindows = xmobarColor "#707070" "#000000"
              , ppOrder           = \(ws:l:t:_) -> [ws,l]
              }
