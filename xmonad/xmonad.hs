@@ -70,7 +70,7 @@ myLayout = smartBorders $ avoidStruts $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ my
             myDefaultLayout = tall ||| twoPane ||| floater ||| tab
 
 -- GAPS!
--- myLayout = smartBorders $ avoidStruts $ gaps [(U,5), (D,5), (L,12), (R,12)] $ spacingRaw True (Border 0 2 2 2) True (Border 0 2 2 2) True $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ myDefaultLayout
+-- myLayout = smartBorders $ avoidStruts $ gaps [(U,5), (D,5), (L,5), (R,5)] $ spacingRaw True (Border 0 2 2 2) True (Border 0 2 2 2) True $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ myDefaultLayout
 
 tall    = renamed [Replace "Tall"] $ ResizableTall 1 (3/100) (1/2) []
 twoPane = renamed [Replace "Two Pane"] $ TwoPane (3/100) (1/2)
