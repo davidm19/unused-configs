@@ -5,9 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "curie:size=12:antialias=true:autohint=true";
-/* static char *font = "xos4 Terminus:size=12:antialias=false:autohint=true"; */
-/* static char *font = "Inconsolata:size=12:antialias=true:autohint=true"; */
+static char *font = "Inconsolata:size=12:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -158,8 +156,14 @@ static unsigned int defaultattr = 11;
  */
 static MouseShortcut mshortcuts[] = {
 	/* button               mask            string */
-	{ Button4,              XK_ANY_MOD,     "\031" },
-	{ Button5,              XK_ANY_MOD,     "\005" },
+	{ Button4,              XK_NO_MOD,     "\031" },
+	{ Button5,              XK_NO_MOD,     "\005" },
+};
+
+MouseKey mkeys[] = {
+	/* button               mask            function        argument */
+	{ Button4,              ShiftMask,      kscrollup,      {.i =  1} },
+	{ Button5,              ShiftMask,      kscrolldown,    {.i =  1} },
 };
 
 /* Internal keyboard shortcuts. */
@@ -180,13 +184,11 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ TERMMOD,		XK_Up,		zoom,		{.f = +1} },
-	{ TERMMOD,		XK_Down,	zoom,		{.f = -1} },
-	{ TERMMOD,		XK_J,		zoom,		{.f = +2} },
-	{ TERMMOD,		XK_K,		zoom,		{.f = -2} },
+	{ TERMMOD,		XK_J,		zoom,		{.f = +1} },
+	{ TERMMOD,		XK_K,		zoom,		{.f = -1} },
 	{ TERMMOD,		XK_H,		zoomreset,	{.f =  0} },
-	{ TERMMOD,		XK_U,		zoom,		{.f = +2} },
-	{ TERMMOD,		XK_D,		zoom,		{.f = -2} },
+	{ TERMMOD,		XK_U,		kscrollup,	{.i =  1} },
+	{ TERMMOD,		XK_D,		kscrolldown,	{.i =  1} },
 };
 
 /*
