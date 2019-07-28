@@ -48,10 +48,10 @@ main = do
          , logHook    = dynamicLogWithPP $ def
              { ppOutput          = hPutStrLn xmproc
              , ppTitle           = xmobarColor "#ff0000" "" . shorten 50
-             , ppLayout          = xmobarColor "#ffff00" ""
+             , ppLayout          = xmobarColor "#00ffff" ""
              , ppSep             = "<fc=#b2b2b2> :: </fc>"
-             , ppCurrent         = xmobarColor "#00ffff" "" . wrap "[" "]"
-             , ppHidden          = xmobarColor "#00ffff" "" . wrap "" ""
+             , ppCurrent         = xmobarColor "#ffff00" "" . wrap "[" "]"
+             , ppHidden          = xmobarColor "#999999" "" . wrap "(" ")"
              , ppHiddenNoWindows = xmobarColor "#707070" "#000000"
              , ppOrder           = \(ws:l:t:_) -> [ws,l]
              }
