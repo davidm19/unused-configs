@@ -8,6 +8,8 @@ Custom Keybindings
 Zoom:
  * Up    - M-equals
  * Down  - M-minus
+    (why equals and minus? They're actually
+    the defaults for iTerm2)
  * Reset - M-S-h
 
 Scroll
